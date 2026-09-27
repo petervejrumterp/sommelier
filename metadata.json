@@ -1,0 +1,8 @@
+{
+  "name": "Vininvestoren | Sommelier",
+  "description": "An elegant AI-powered wine pairing assistant by Vininvestoren that suggests the perfect wine for any meal.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
