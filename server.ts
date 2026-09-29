@@ -5,7 +5,7 @@ import { GoogleGenAI, Type } from "@google/genai";
 
 async function startServer() {
   const app = express();
-  const PORT = Number(process.env.PORT) || 3000;
+  const PORT = process.env.PORT || 3000;
 
   app.use(express.json());
 
@@ -158,9 +158,15 @@ Ager som en dansk sommelier i absolut verdensklasse hos Vininvestoren. Vær spec
     });
   }
 
-  app.listen(PORT, "0.0.0.0", () => {
-    console.log(`Server running on http://localhost:${PORT}`);
-  });
+  if (typeof PORT === "string" && isNaN(Number(PORT))) {
+    app.listen(PORT, () => {
+      console.log(`Server running on socket ${PORT}`);
+    });
+  } else {
+    app.listen(Number(PORT), "0.0.0.0", () => {
+      console.log(`Server running on http://0.0.0.0:${PORT}`);
+    });
+  }
 }
 
 startServer();
