@@ -48,8 +48,8 @@ export const MealSelector: React.FC<MealSelectorProps> = ({ onSelect, isLoading 
           type="text"
           value={input}
           onChange={(e) => setInput(e.target.value)}
-          placeholder="Beskriv din ret (f.eks. 'Kylling i karry', 'Bøf Bearnaise')..."
-          className="w-full bg-white border border-slate-200 text-[#102633] pl-12 pr-4 py-5 rounded-2xl focus:outline-none focus:ring-2 focus:ring-[#102633]/5 focus:border-[#C09D6A] transition-all placeholder-slate-400 shadow-sm"
+          placeholder="Beskriv din ret"
+          className="w-full bg-white border border-slate-200 text-[#102633] pl-12 pr-28 sm:pr-32 py-5 rounded-2xl focus:outline-none focus:ring-2 focus:ring-[#102633]/5 focus:border-[#C09D6A] transition-all placeholder-slate-400 shadow-sm"
           disabled={isLoading}
         />
         <button 

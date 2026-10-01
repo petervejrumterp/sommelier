@@ -40,7 +40,7 @@ export const WineDisplay: React.FC<WineDisplayProps> = ({ meal, pairing, onReset
     }
   };
 
-  const shopLink = `https://vininvestoren.dk/search?q=${encodeURIComponent(pairing.wineName)}`;
+  const shopLink = `https://vininvestoren.dk/search?q=${encodeURIComponent(pairing.wineName)}&utm_source=sommelier&utm_medium=referral&utm_campaign=vinmatch&utm_content=find_vin`;
 
   return (
     <div className="w-full max-w-4xl mx-auto animate-in fade-in slide-in-from-bottom-8 duration-700 pb-10">
