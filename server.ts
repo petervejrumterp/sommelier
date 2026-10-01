@@ -150,7 +150,11 @@ Ager som en dansk sommelier i absolut verdensklasse hos Vininvestoren. Vær spec
     });
     app.use(vite.middlewares);
   } else {
-    const distPath = path.join(process.cwd(), "dist");
+    const fs = await import("fs");
+    const distPath = fs.existsSync(path.join(process.cwd(), "dist", "index.html"))
+      ? path.join(process.cwd(), "dist")
+      : process.cwd();
+
     app.use(express.static(distPath));
     // In Express v5 wildcard route uses *all
     app.get("*all", (_req, res) => {
