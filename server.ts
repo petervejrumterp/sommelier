@@ -1,6 +1,5 @@
 import express from "express";
 import path from "path";
-import { createServer as createViteServer } from "vite";
 import { GoogleGenAI, Type } from "@google/genai";
 
 async function startServer() {
@@ -144,6 +143,7 @@ Ager som en dansk sommelier i absolut verdensklasse hos Vininvestoren. Vær spec
 
   // Vite middleware setup
   if (process.env.NODE_ENV !== "production") {
+    const { createServer: createViteServer } = await import("vite");
     const vite = await createViteServer({
       server: { middlewareMode: true },
       appType: "spa",
@@ -162,15 +162,14 @@ Ager som en dansk sommelier i absolut verdensklasse hos Vininvestoren. Vær spec
     });
   }
 
-  if (typeof PORT === "string" && isNaN(Number(PORT))) {
-    app.listen(PORT, () => {
-      console.log(`Server running on socket ${PORT}`);
-    });
-  } else {
-    app.listen(Number(PORT), "0.0.0.0", () => {
-      console.log(`Server running on http://0.0.0.0:${PORT}`);
-    });
-  }
+  // Phusion Passenger / Node standard listen
+  const server = app.listen(PORT, () => {
+    console.log(`Server listening on ${PORT}`);
+  });
+
+  return server;
 }
 
-startServer();
+startServer().catch((err) => {
+  console.error("Failed to start server:", err);
+});
