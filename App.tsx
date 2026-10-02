@@ -18,6 +18,12 @@ const App: React.FC = () => {
     setError(null);
     setPairing(null);
 
+    if (typeof (window as any).gtag === 'function') {
+      (window as any).gtag('event', 'search_wine_pairing', {
+        search_term: selectedMeal,
+      });
+    }
+
     try {
       const pairingPromise = getWinePairing(selectedMeal);
 

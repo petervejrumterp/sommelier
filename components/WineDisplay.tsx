@@ -145,6 +145,16 @@ export const WineDisplay: React.FC<WineDisplayProps> = ({ meal, pairing, onReset
                  href={shopLink} 
                  target="_blank" 
                  rel="noopener noreferrer"
+                 onClick={() => {
+                   if (typeof (window as any).gtag === 'function') {
+                     (window as any).gtag('event', 'click_shop_link', {
+                       wine_name: pairing.wineName,
+                       wine_type: pairing.wineType,
+                       meal: meal,
+                       link_url: shopLink,
+                     });
+                   }
+                 }}
                  className="group w-full flex items-center justify-between p-5 rounded-2xl bg-[#102633] hover:bg-[#1a3a4d] transition-all shadow-lg hover:shadow-xl"
                >
                  <div className="flex items-center space-x-4">
